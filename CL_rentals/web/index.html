@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CL_rentals</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./notify.css" />
+</head>
+<body>
+    <div id="app">
+        <!-- ═══ MENU (desk · my rentals · admin) ═══ -->
+        <div id="menu" class="menu hidden">
+            <div class="frame">
+                <div class="frame-glow"></div>
+
+                <header class="header">
+                    <div class="brand">
+                        <div class="logo" id="logo"></div>
+                        <div class="brand-text">
+                            <div class="title" id="title">Rentals</div>
+                            <div class="subtitle" id="subtitle"></div>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div id="headerStats" class="row"></div>
+                        <div class="btn-close" id="closeBtn">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="#DDDDDD" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        </div>
+                    </div>
+                    <div class="header-divider"></div>
+                </header>
+
+                <div class="body">
+                    <aside class="sidebar">
+                        <div class="section-label" id="navLabel">VEHICLES</div>
+                        <div class="sidebar-inner">
+                            <nav class="nav" id="nav"></nav>
+                            <div class="profile-card" id="profileCard"></div>
+                        </div>
+                    </aside>
+                    <main class="content" id="content"></main>
+                </div>
+
+                <div id="modal" class="modal hidden"></div>
+            </div>
+        </div>
+
+        <!-- ═══ RENTAL CONTRACT ═══ -->
+        <div id="doc" class="docwrap hidden"></div>
+    </div>
+
+    <script src="./notify.js"></script>
+    <script src="./app.js"></script>
+    <script src="./desk.js"></script>
+    <script src="./admin.js"></script>
+</body>
+</html>

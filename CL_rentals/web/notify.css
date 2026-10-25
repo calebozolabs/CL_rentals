@@ -1,0 +1,49 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CL NOTIFICATIONS — restyle freely. Position is set in the config
+   (Config.Notify.position): top-right | top-left | top | bottom | bottom-right | bottom-left | center-right
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.cln-stack { position: fixed; z-index: 9999; display: flex; flex-direction: column; gap: 10px; width: 340px; pointer-events: none; }
+.cln-stack[data-pos="top-right"]    { top: 28px; right: 28px; }
+.cln-stack[data-pos="top-left"]     { top: 28px; left: 28px; }
+.cln-stack[data-pos="top"]          { top: 28px; left: 50%; transform: translateX(-50%); }
+.cln-stack[data-pos="bottom"]       { bottom: 9vh; left: 50%; transform: translateX(-50%); flex-direction: column-reverse; }
+.cln-stack[data-pos="bottom-right"] { bottom: 28px; right: 28px; flex-direction: column-reverse; }
+.cln-stack[data-pos="bottom-left"]  { bottom: 28px; left: 28px; flex-direction: column-reverse; }
+.cln-stack[data-pos="center-right"] { top: 50%; right: 28px; transform: translateY(-50%); }
+
+/* Colour per kind: --c is the accent, --cb the soft background behind the icon */
+.cln         { --c: #47B5FF; --cb: rgba(71, 181, 255, 0.14); }
+.cln.success { --c: #4ADE80; --cb: rgba(74, 222, 128, 0.14); }
+.cln.error   { --c: #F22933; --cb: rgba(242, 41, 51, 0.16); }
+.cln.warning { --c: #FFB347; --cb: rgba(255, 179, 71, 0.15); }
+
+.cln {
+    position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px 14px 16px; overflow: hidden;
+    border-radius: 8px; border: 0.5px solid rgba(255, 255, 255, 0.12);
+    background: radial-gradient(120% 140% at 0% 0%, rgba(255, 255, 255, 0.06) 0%, rgba(153, 153, 153, 0) 60%), rgba(21, 20, 25, 0.95);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    color: var(--text, #FFFFFF); font-family: var(--regular, 'Segoe UI', sans-serif);
+    animation: clnIn 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.cln::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c); box-shadow: 0 0 12px var(--c); }
+
+.cln-ico { flex-shrink: 0; width: 26px; height: 26px; border-radius: 6px; display: grid; place-items: center; background: var(--cb); color: var(--c); }
+.cln-ico svg { width: 14px; height: 14px; }
+
+.cln-body { flex: 1; min-width: 0; padding-top: 1px; }
+.cln-title { font-family: var(--bold, 'Segoe UI', sans-serif); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); margin-bottom: 3px; }
+.cln-title:empty { display: none; }
+.cln-msg { font-family: var(--medium, 'Segoe UI', sans-serif); font-size: 13px; line-height: 1.4; color: rgba(255, 255, 255, 0.92); overflow-wrap: anywhere; }
+
+.cln-count { flex-shrink: 0; align-self: center; padding: 2px 7px; border-radius: 10px; font-family: var(--bold, 'Segoe UI', sans-serif); font-size: 11px; color: var(--c); background: var(--cb); }
+
+.cln-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--c); opacity: 0.55; transform-origin: left; animation: clnBar var(--d, 4200ms) linear forwards; }
+
+.cln.bump { animation: clnBump 0.28s ease; }
+.cln.out  { animation: clnOut 0.25s ease both; }
+
+@keyframes clnIn   { from { opacity: 0; transform: translateY(-8px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes clnOut  { to { opacity: 0; transform: translateY(-6px) scale(0.98); } }
+@keyframes clnBump { 40% { transform: scale(1.025); } }
+@keyframes clnBar  { from { transform: scaleX(1); } to { transform: scaleX(0); } }
